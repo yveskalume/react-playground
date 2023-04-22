@@ -6,11 +6,12 @@ import Intro1 from "./components/Intro1";
 import Intro2 from "./components/Intro2";
 import Intro3 from "./components/Intro3";
 import Footer from "./components/Footer";
+import {Route, Routes} from "react-router-dom";
 
 const AppContext = React.createContext();
 const _name = "Yves";
-const AppProvider = ({children}) =>{
-    const [name,setName] = React.useState(_name);
+const AppProvider = ({children}) => {
+    const [name, setName] = React.useState(_name);
     return (
         <AppContext.Provider value={{name}}>
             {children}
@@ -23,10 +24,12 @@ function App() {
     return (
         <AppProvider>
             <Nav/>
-            <Promo/>
-            <Intro1/>
-            <Intro2/>
-            <Intro3/>
+            <Routes>
+                <Route path="/" element={<Promo/>}/>
+                <Route path="/intro1" element={<Intro1/>}/>
+                <Route path="/intro2" element={<Intro2/>}/>
+                <Route path="/intro3" element={<Intro3/>}/>
+            </Routes>
             <Footer/>
         </AppProvider>
     );
